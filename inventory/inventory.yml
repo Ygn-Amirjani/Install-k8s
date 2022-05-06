@@ -27,7 +27,3 @@ worker3_server:
 
 haproxy_server:
   hosts: haproxy
-
-
-
-

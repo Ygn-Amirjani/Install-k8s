@@ -27,3 +27,4 @@
     src: config/haproxy.cfg
     dest: /etc/haproxy/haproxy.cfg
   notify: restart haproxy service
+

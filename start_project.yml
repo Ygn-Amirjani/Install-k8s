@@ -1,6 +1,6 @@
 ---
 - name: Start the project from your host
-  hosts: gateway_public_ip
+  hosts: 94.101.184.245
   become: yes
   tasks:
     - name: Install required packages
