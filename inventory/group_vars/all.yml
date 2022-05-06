@@ -1,7 +1,15 @@
 ---
 ansible_ssh_user: ubuntu
 
+gateway_public_ip: 94.101.184.245
 gateway_private_ip: 172.16.16.127
+master1_ip: 172.16.16.144
+master2_ip: 172.16.16.10
+master3_ip: 172.16.16.56
+worker1_ip: 172.16.16.188
+worker2_ip: 172.16.16.44
+worker3_ip: 172.16.16.133
+haproxy_ip: 172.16.16.165
 
 github_username: Ygn-Amirjani
 github_token: !vault |
