@@ -21,3 +21,11 @@
       - kubeadm={{ kubeadm_version }}
       - kubectl={{ kubectl_version }}
   notify: Restart kubelet
+
+- name: Hold kubeadm
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  loop:
+    - kubeadm
+    - kubelet
