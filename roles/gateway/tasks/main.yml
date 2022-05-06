@@ -26,3 +26,8 @@
     sysctl_set: yes
     reload: yes
 
+- name: Copy hosts file
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+
