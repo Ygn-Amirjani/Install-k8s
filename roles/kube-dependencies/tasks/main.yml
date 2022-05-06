@@ -40,7 +40,8 @@
 
 - name: Hold kubeadm
   dpkg_selections:
-    name: 
-      - kubelet
-      - kubeadm
+    name: "{{ item }}"
     selection: hold
+  loop:
+    - kubelet
+    - kubeadm
