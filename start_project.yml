@@ -23,6 +23,8 @@
     - name: ssh-keygen
       openssh_keypair:
         path: .ssh/id_rsa
+        owner: ubuntu
+        group: ubuntu
 
     - name: Clone ansible git repository
       git:
