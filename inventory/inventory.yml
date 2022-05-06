@@ -1,0 +1,8 @@
+gateway:
+  hosts: localhost
+  vars:
+    ansible_connection: local
+    ansible_ssh_user: root
+
+gateway_public_ip:
+  hosts: 94.101.185.217

@@ -1,0 +1,34 @@
+---
+- name: Start the project from your host
+  hosts: gateway_public_ip
+  become: yes
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - software-properties-common
+          - git
+        update_cache: yes
+
+    - name: Add ansible repository
+      apt_repository:
+        repo: "ppa:ansible/ansible"
+        state: present
+
+    - name: Install ansible
+      apt:
+        name: ansible
+        update_cache: yes
+
+    - name: ssh-keygen
+      openssh_keypair:
+        path: .ssh/id_rsa
+
+    - name: Clone ansible git repository
+      git:
+        repo: "https://{{ github_username }}:{{ github_token }}@github.com/Ygn-Amirjani/kubernetes.git"
+        dest: ansible
+        clone: yes
+        update: yes
+        force: yes
+      become: no
