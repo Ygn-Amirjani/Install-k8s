@@ -4,11 +4,6 @@
   async: 45
   poll: 0
 
-- name: docker status
-  service:
-    name: docker
-    state: status
-
 - name: Restart kubelet
   service:
     name: kubelet
