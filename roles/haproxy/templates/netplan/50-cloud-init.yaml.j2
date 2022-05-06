@@ -6,7 +6,7 @@ network:
       addresses:
         - {{ ansible_eth0.ipv4.address }}/24
       gateway4: {{ gateway_private_ip }}
-	    match:
+      match:
         macaddress: {{ ansible_eth0["macaddress"] }}
       nameservers:
         addresses:
