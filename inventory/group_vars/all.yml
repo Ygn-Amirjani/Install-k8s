@@ -1,6 +1,8 @@
 ---
 ansible_ssh_user: ubuntu
 
+gateway_private_ip: 172.16.16.127
+
 github_username: Ygn-Amirjani
 github_token: !vault |
   $ANSIBLE_VAULT;1.1;AES256

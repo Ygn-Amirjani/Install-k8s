@@ -1,0 +1,6 @@
+---
+- name: Run the role of HAProxy or Load Balancer
+  hosts: haproxy
+  become: True
+  roles:
+    - haproxy

@@ -5,4 +5,7 @@ gateway:
     ansible_ssh_user: root
 
 gateway_public_ip:
-  hosts: 94.101.185.217
+  hosts: 94.101.184.245
+
+haproxy:
+  hosts: 172.16.16.165
