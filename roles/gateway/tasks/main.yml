@@ -28,6 +28,6 @@
 
 - name: Copy hosts file
   template:
-    src: hosts.j2
+    src: hosts/hosts.j2
     dest: /etc/hosts
 
