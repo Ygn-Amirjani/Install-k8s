@@ -37,3 +37,10 @@
       - kubelet={{ kubelet_version }}
       - kubectl={{ kubectl_version }}
     update_cache: yes
+
+- name: Hold kubeadm
+  dpkg_selections:
+    name: 
+      - kubelet
+      - kubeadm
+    selection: hold
