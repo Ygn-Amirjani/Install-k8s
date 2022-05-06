@@ -1,0 +1,10 @@
+---
+
+# links
+kubernetes_add_gpg_key: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+kubernetes_repo_url: https://apt.kubernetes.io/ kubernetes-xenial main
+
+# version
+kubeadm_version: 1.19.2-00
+kubelet_version: 1.19.2-00
+kubectl_version: 1.19.2-00

@@ -7,7 +7,7 @@ gateway:
     ansible_connection: local
     ansible_ssh_user: root
 
-maseter1_server:
+master1_server:
   hosts: master1
 
 master2_server:
