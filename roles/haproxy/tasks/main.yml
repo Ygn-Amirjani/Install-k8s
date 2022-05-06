@@ -22,3 +22,9 @@
       - haproxy
     update_cache: yes
 
+- name: Append the frontend and backend lines to /etc/haproxy/haproxy.cfg
+  template:
+    src: config/haproxy.cnf.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify: restart haproxy service
+
