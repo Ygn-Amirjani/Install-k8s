@@ -1,11 +1,33 @@
+gateway_public_ip:
+  hosts: 94.101.184.245
+
 gateway:
   hosts: localhost
   vars:
     ansible_connection: local
     ansible_ssh_user: root
 
-gateway_public_ip:
-  hosts: 94.101.184.245
+maseter1_server:
+  hosts: master1
 
-haproxy:
-  hosts: 172.16.16.165
+master2_server:
+  hosts: master2
+
+master3_server:
+  hosts: master3
+
+worker1_server:
+  hosts: worker1
+
+worker2_server:
+  hosts: worker2
+
+worker3_server:
+  hosts: worker3
+
+haproxy_server:
+  hosts: haproxy
+
+
+
+
