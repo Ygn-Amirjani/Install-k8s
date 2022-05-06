@@ -1,4 +1,14 @@
 ---
+- name: restart resolvconf
+  service:
+    name: resolvconf
+    state: restarted
+
+- name: apply netplan
+  command: netplan apply
+  async: 45
+  poll: 0
+
 - name: restart haproxy service
   service:
     name: haproxy
