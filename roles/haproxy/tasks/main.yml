@@ -24,7 +24,7 @@
 
 - name: Append the frontend and backend lines to /etc/haproxy/haproxy.cfg
   template:
-    src: config/haproxy.cfg
+    src: config/haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
   notify: restart haproxy service
 
