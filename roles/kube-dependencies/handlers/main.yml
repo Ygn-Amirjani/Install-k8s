@@ -1,6 +1,16 @@
 ---
-
 - name: apply netplan
   command: netplan apply
   async: 45
   poll: 0
+
+- name: Restart kubelet
+  service:
+    name: docker
+    state: status
+
+- name: Restart kubelet
+  service:
+    name: kubelet
+    daemon_reload: yes
+    state: restarted

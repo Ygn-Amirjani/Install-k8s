@@ -2,46 +2,12 @@
 - name: netplan apply
   import_tasks: netplan.yml
 
-- name: Update sysctl settings for Kubernetes networking
-  copy:
-    src: kubernetes.conf
-    dest: /etc/sysctl.d/kubernetes.conf
+- name: Disable swap
+  import_tasks: swap.yml
 
-- name: Install docker
-  apt:
-    name:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg-agent
-      - software-properties-common
-      - docker
-      - docker.io
-      - python3-docker
-    update_cache: yes
+- name: Install Docker
+  import_tasks: docker.yml
 
-- name: kubernetes add gpg key
-  apt_key:
-    url: "{{ kubernetes_add_gpg_key }}"
-    state: present
+- name: Install Kubeadm, Kubelet, Kubectl
+  import_tasks: kube.yml
 
-- name: add repository kubernetes
-  apt_repository:
-    repo: "deb {{ kubernetes_repo_url }}"
-    state: present
-
-- name: Install kubeadm kubelet kubectl
-  apt:
-    name:
-      - kubeadm={{ kubeadm_version }}
-      - kubelet={{ kubelet_version }}
-      - kubectl={{ kubectl_version }}
-    update_cache: yes
-
-- name: Hold kubeadm
-  dpkg_selections:
-    name: "{{ item }}"
-    selection: hold
-  loop:
-    - kubelet
-    - kubeadm

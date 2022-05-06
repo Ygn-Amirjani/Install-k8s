@@ -1,0 +1,23 @@
+---
+- name: Add an apt signing key for Kubernetes
+  apt_key:
+    url: "{{ kubernetes_add_gpg_key }}"
+    state: present
+
+- name: Adding apt repository for Kubernetes
+  apt_repository:
+    repo: "deb {{ kubernetes_repo_url }} kubernetes-xenial main"
+    state: present
+    filename: kubernetes.list
+
+- name: Install Kubernetes binaries
+  apt: 
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+      - kubelet={{ kubelet_version }}
+      - kubeadm={{ kubeadm_version }}
+      - kubectl={{ kubectl_version }}
+  notify: Restart kubelet
