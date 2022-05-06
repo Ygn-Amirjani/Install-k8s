@@ -3,4 +3,5 @@
   hosts: haproxy_server
   become: True
   roles:
+    - dns
     - haproxy

@@ -1,9 +1,4 @@
 ---
-- name: restart resolvconf
-  service:
-    name: resolvconf
-    state: restarted
-
 - name: apply netplan
   command: netplan apply
   async: 45

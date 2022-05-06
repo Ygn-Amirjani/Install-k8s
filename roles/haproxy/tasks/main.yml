@@ -2,20 +2,6 @@
 - name: netplan apply
   import_tasks: netplan.yml
 
-- name: Install resolvconf on gateway
-  apt:
-    name:
-      - resolvconf
-    update_cache: yes
-
-- name: Add DNS Addresses
-  blockinfile:
-    path: /etc/resolvconf/resolv.conf.d/head
-    block: |
-      nameserver 8.8.8.8
-      nameserver 1.1.1.1
-  notify: restart resolvconf
-
 - name: install HAProxy
   apt:
     name:
