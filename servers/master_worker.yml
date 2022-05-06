@@ -9,4 +9,5 @@
     - worker3_server
   become: True
   roles:
+    - dns
     - kube-dependencies
