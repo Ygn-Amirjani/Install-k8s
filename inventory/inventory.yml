@@ -4,8 +4,5 @@ gateway:
     ansible_connection: local
     ansible_ssh_user: root
 
-gateway_server:
-  hosts: gateway_valid_ip
-
 haproxy_server:
   hosts: haproxy
