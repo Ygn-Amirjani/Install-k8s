@@ -41,6 +41,7 @@
 - name: pull an images for calico
   docker_image:
     name: "{{ item }}"
+    source: pull
   loop:
     - calico/kube-controllers:v3.15.5
     - calico/node:v3.15.5
