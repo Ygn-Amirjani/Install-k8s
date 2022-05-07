@@ -32,3 +32,9 @@
     - docker-ce 
     - docker-ce-cli 
     - containerd.io
+
+- name: docker login
+  docker_login:
+    username: "{{ name }}"
+    password: "{{ pass }}"
+    email: "{{ email_address }}"
