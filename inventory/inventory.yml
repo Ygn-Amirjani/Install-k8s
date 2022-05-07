@@ -1,5 +1,5 @@
 gateway_public_ip:
-  hosts: 94.101.184.245
+  hosts: 188.121.111.196
 
 gateway:
   hosts: localhost

@@ -1,0 +1,10 @@
+---
+- name: Run the role of all workers
+  hosts:
+    - worker1
+    - worker2
+    - worker3
+  become: True
+  roles:
+    - dns
+    - kube-dependencies

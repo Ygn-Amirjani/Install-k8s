@@ -1,0 +1,7 @@
+---
+- name: Run the role of master 1
+  hosts: master1
+  become: True
+  roles:
+    - dns
+    - kube-dependencies
