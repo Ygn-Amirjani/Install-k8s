@@ -2,15 +2,19 @@
 
 # links
 kubernetes_add_gpg_key: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-docker_add_gpg_key: https://download.docker.com/linux/ubuntu/gpg
-
 kubernetes_repo_url: https://apt.kubernetes.io/
-docker_repo_url: https://download.docker.com/linux/ubuntu
 
 # version
 kubeadm_version: 1.19.2-00
 kubelet_version: 1.19.2-00
 kubectl_version: 1.19.2-00
+calico_version: v3.15.5
+
+calico_docker_pull: 
+  - "calico/kube-controllers"
+  - "calico/node"
+  - "calico/pod2daemon-flexvol"
+  - "calico/cni"
 
 # docker information
 docker_username: yeganeamirjani
