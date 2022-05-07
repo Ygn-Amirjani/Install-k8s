@@ -37,3 +37,12 @@
   docker_login:
     username: "{{ docker_username }}"
     password: "{{ docker_password }}"
+
+- name: pull an images for calico
+  docker_image:
+    name: "{{ item }}"
+  loop:
+    - calico/kube-controllers:v3.15.5
+    - calico/node:v3.15.5
+    - calico/pod2daemon-flexvol:v3.15.5
+    - calico/cni:v3.15.5
