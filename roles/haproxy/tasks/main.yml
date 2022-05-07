@@ -4,8 +4,7 @@
 
 - name: install HAProxy
   apt:
-    name:
-      - haproxy
+    name: haproxy
     update_cache: yes
 
 - name: Append the frontend and backend lines to /etc/haproxy/haproxy.cfg
