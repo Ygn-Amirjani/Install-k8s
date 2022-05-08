@@ -5,4 +5,4 @@
      dest: /tmp/join-command.sh
      mode: 0777
   notify:
-    - Join the woker to cluster
+    - Join the worker to cluster

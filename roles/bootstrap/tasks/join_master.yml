@@ -5,5 +5,5 @@
      dest: /tmp/crts.sh
      mode: 0777
   notify:
-    - Join the node to cluster
+    - Join the masters to cluster
   
