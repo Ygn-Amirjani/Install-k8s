@@ -2,33 +2,26 @@
 - name: Generate join command
   command: kubeadm token create --print-join-command
   register: join_command
-  when: "'init_master' in kubernetes"
 
 - name: Generate certificate-key
   command: kubeadm init phase upload-certs --upload-certs
   register: certs
-  when: "'init_master' in kubernetes"
 
 - name: Copy join command to local file
   local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command"
-  when: "'init_master' in kubernetes"
 
 - name: Copy crts to local file
   local_action: copy content="{{ join_command.stdout_lines[0] }} --control-plane --certificate-key {{ certs.stdout_lines[2]}}" dest="./crts"
-  when: "'init_master' in kubernetes"
 
 - name: Install calico pod network
   become: false
   command: sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://docs.projectcalico.org/v3.15/manifests/calico.yaml
-  when: "'init_master' in kubernetes"
 
 - name: Join the masters to cluster
   command: sh /tmp/crts.sh
-  when: "'othermasters' in kubernetes"
 
 - name: Join the worker to cluster
   command: sh /tmp/join-command.sh
-  when: "'node' in kubernetes"
 
 - name: restart haproxy
   service:
