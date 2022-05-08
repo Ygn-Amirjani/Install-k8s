@@ -14,10 +14,6 @@
   import_tasks: join_worker.yml
   when: "'join_worker' in bootstrap"
 
-- name: config load balancer after start cluster
-  import_tasks: loadbalancer.yml
-  when: "'loadbalancer' in bootstrap"
-
 - name: fix nothealthy error
   copy:
     src: kube-scheduler.yaml
