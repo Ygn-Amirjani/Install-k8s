@@ -6,4 +6,4 @@
     - dns
     - kube-dependencies
     - role: bootstrap
-      bootstrap: ["init_master, masters"]
+      bootstrap: ["init_master", "masters"]

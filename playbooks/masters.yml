@@ -8,4 +8,4 @@
     - dns
     - kube-dependencies
     - role: bootstrap
-      bootstrap: ["join_master, masters"]
+      bootstrap: ["join_master", "masters"]
