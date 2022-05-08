@@ -1,0 +1,16 @@
+---
+- name: Check if .kube directory exists
+  stat:
+    path: /root/.kube
+  register: kube_dir
+
+- name: Setup kubeconfig for vagrant user
+  command: "{{ item }}"
+  with_items:
+    - mkdir -p $HOME/.kube
+    - sudo scp root@{{ master1_ip }}1:/etc/kubernetes/admin.conf ~/.kube/config
+    - sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    - snap install kubectl --classic
+  when: not kube_dir.stat.exists
+  notify:
+    - restart haproxy

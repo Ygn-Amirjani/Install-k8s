@@ -5,3 +5,6 @@
   roles:
     - dns
     - haproxy
+    - role: bootstrap
+      bootstrap: ["loadbalancer"]
+

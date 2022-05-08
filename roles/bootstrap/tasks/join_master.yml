@@ -1,0 +1,9 @@
+---
+- name: Copy the crts to server location
+  copy:
+     src: crts
+     dest: /tmp/crts.sh
+     mode: 0777
+  notify:
+    - Join the node to cluster
+  

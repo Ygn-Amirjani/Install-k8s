@@ -8,3 +8,5 @@
   roles:
     - dns
     - kube-dependencies
+    - role: bootstrap
+      bootstrap: ["join_worker"]

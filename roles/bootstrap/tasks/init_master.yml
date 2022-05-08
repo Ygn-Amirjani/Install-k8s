@@ -1,0 +1,29 @@
+---
+- name: Check if .kube directory exists
+  stat:
+    path: /root/.kube
+  register: kube_dir
+
+- name: Initialize the Kubernetes cluster using kubeadm
+  command: kubeadm init --control-plane-endpoint="{{ haproxy_ip }}:6443" --upload-certs --apiserver-advertise-address={{ master1_ip }} --pod-network-cidr=192.168.0.0/16
+  when: not kube_dir.stat.exists
+
+- name: We create a directory to register logs
+  file:
+    path: /root/.kube
+    state: directory
+    mode: 0755
+
+- name: copy admin.conf to user's kube config
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /root/.kube/config
+    remote_src: yes
+  notify:
+    - Generate join command
+    - Generate certificate-key
+    - Copy join command to local file
+    - Copy crts to local file
+    - Install calico pod network
+
+

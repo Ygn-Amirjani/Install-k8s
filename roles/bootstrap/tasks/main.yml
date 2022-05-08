@@ -1,0 +1,39 @@
+---
+- name: Initialize and configuration master1
+  import_tasks: init_master.yml
+  when: "'init_master' in bootstrap"
+
+- name: Force for run handlers
+  meta: flush_handlers
+
+- name: Join masters to cluster
+  import_tasks: join_master.yml
+  when: "'join_master' in bootstrap"
+
+- name: Join workers to cluster
+  import_tasks: join_worker.yml
+  when: "'join_worker' in bootstrap"
+
+- name: config load balancer after start cluster
+  import_tasks: loadbalancer.yml
+  when: "'loadbalancer' in bootstrap"
+
+- name: fix nothealthy error
+  copy:
+    src: kube-scheduler.yaml
+    dest: /etc/kubernetes/manifests/kube-scheduler.yaml
+    owner: root
+    group: root
+    mode: 600
+  when: "'masters' in bootstrap"
+
+- name: fix nothealthy error
+  copy:
+    src: kube-controller-manager.yaml
+    dest: /etc/kubernetes/manifests/kube-controller-manager.yaml
+    owner: root
+    group: root
+    mode: 600
+  when: "'masters' in bootstrap"
+  notify:
+    - restart kubelet
