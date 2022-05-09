@@ -2,25 +2,25 @@
 - name: Check if scheduler.yaml file exists
   stat:
     path: scheduler.yaml
-  register: scheduler.yaml_file
+  register: scheduler_file
 
 - name: remove '- --port=0' from /etc/kubernetes/manifests/kube-scheduler.yaml
-  command: sed 's/- --port=0//' /etc/kubernetes/manifests/kube-scheduler.yaml > scheduler.yaml
-  when: not scheduler.yaml_file.stat.exists
+  shell: sed 's/- --port=0//' /etc/kubernetes/manifests/kube-scheduler.yaml > scheduler.yaml
+  when: not scheduler_file.stat.exists
 
 - name: Check if controller-manager.yaml file exists
   stat:
     path: controller-manager.yaml
-  register: controller-manager.yaml_file
+  register: controller_manager_file
 
 - name: remove '- --port=0' from /etc/kubernetes/manifests/kube-controller-manager.yaml
-  command: sed 's/- --port=0//' /etc/kubernetes/manifests/kube-controller-manager.yaml > scheduler.yaml
-  when: not controller-manager.yaml_file.stat.exists
+  shell: sed 's/- --port=0//' /etc/kubernetes/manifests/kube-controller-manager.yaml > controller-manager.yaml
+  when: not controller_manager_file.stat.exists
 
 - name: fix bug :)
   copy:
     src: "{{ item }}"
-    des: "/etc/kubernetes/manifests/kube-{{ item }}"
+    dest: "/etc/kubernetes/manifests/kube-{{ item }}"
     remote_src: yes
   loop:
     - scheduler.yaml
