@@ -10,26 +10,13 @@
   import_tasks: join_master.yml
   when: "'join_master' in bootstrap"
 
+- name: Force for run handlers
+  meta: flush_handlers
+
 - name: Join workers to cluster
   import_tasks: join_worker.yml
   when: "'join_worker' in bootstrap"
 
-- name: fix nothealthy error
-  copy:
-    src: kube-scheduler.yaml
-    dest: /etc/kubernetes/manifests/kube-scheduler.yaml
-    owner: root
-    group: root
-    mode: 600
+- name: Fix bug unhealthy for scheduler and controller-manager
+  import_tasks: fix_bug.yml
   when: "'masters' in bootstrap"
-
-- name: fix nothealthy error
-  copy:
-    src: kube-controller-manager.yaml
-    dest: /etc/kubernetes/manifests/kube-controller-manager.yaml
-    owner: root
-    group: root
-    mode: 600
-  when: "'masters' in bootstrap"
-  notify:
-    - restart kubelet

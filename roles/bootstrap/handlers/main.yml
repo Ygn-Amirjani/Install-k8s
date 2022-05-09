@@ -23,11 +23,6 @@
 - name: Join the worker to cluster
   command: sh /tmp/join-command.sh
 
-- name: restart haproxy
-  service:
-    name: haproxy
-    state: restarted
-
 - name: restart kubelet
   service:
     name: kubelet
