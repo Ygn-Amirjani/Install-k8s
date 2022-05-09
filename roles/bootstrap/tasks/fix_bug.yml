@@ -27,3 +27,15 @@
     - controller-manager.yaml
   notify:
     - restart kubelet
+
+- name: We create a directory to register logs
+  file:
+    path: /root/.kube
+    state: directory
+    mode: 0755
+
+- name: copy admin.conf to user's kube config
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /root/.kube/config
+    remote_src: yes
