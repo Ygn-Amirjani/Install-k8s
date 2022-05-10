@@ -14,7 +14,3 @@
   service:
     name: docker
     state: started
-
-- name: change docker name
-  command: docker tag dockerhub.ir/{{ item }}:{{ calico_version }} {{ item }}:{{ calico_version }}
-  loop: "{{ calico_docker_pull }}"

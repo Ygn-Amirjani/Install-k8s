@@ -46,4 +46,13 @@
     name: "dockerhub.ir/{{ item }}:{{ calico_version }}"
     source: pull
   loop: "{{ calico_docker_pull }}"
-  notify: change docker name
+  register: image_build
+
+- name: change calico image name
+  docker_image:
+    name: "dockerhub.ir/{{ item }}:{{ calico_version }} "    
+    repository: "{{ item }}:{{ calico_version }}"  
+    force_tag: yes
+    source: local
+  loop: "{{ calico_docker_pull }}"
+  when: image_build.changed
