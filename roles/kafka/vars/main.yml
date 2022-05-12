@@ -1,0 +1,10 @@
+---
+# ports
+kafka_port: 9092
+zookeeper_client_port: 2181
+zookeeper_follower_port: 2888
+zookeeper_leader_port: 3888
+
+kafka_type: LoadBalancer
+protocol: TCP
+replica: 1

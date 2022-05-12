@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consumer-1
+  template:
+    metadata:
+      labels:
+        app: consumer-1
+    spec:
+      containers:
+      - name: consumber
+        image: dockerhub.ir/yeganeamirjani/kafka-consumer:latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producer-1
+  template:
+    metadata:
+      labels:
+        app: producer-1
+    spec:
+      containers:
+      - name: producer
+        image: dockerhub.ir/yeganeamirjani/kafka-producer:latest

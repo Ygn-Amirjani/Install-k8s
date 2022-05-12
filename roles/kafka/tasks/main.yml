@@ -1,0 +1,30 @@
+---
+- name: create directory for kafka mnifests
+  file:
+    path: /root/apache-kafka
+    state: directory
+    owner: root
+    group: root
+    mode: 755
+
+- name: copy manifests into apache-kafka directory
+  copy:
+    src: "{{ item }}"
+    dest: "/root/apache-kafka/{{ item }}"
+    owner: root
+    group: root
+    mode: 644
+  loop:
+    - zookeeper-manifest.yml
+    - kafka-manifest.yml
+    - producer-consumer.yml
+
+- name: apply apache-kafka manifests
+  kubernetes.core.k8s:
+    src: "/root/apache-kafka/{{ item }}"
+    state: present
+    apply: yes
+  loop:
+    - zookeeper-manifest.yml
+    - kafka-manifest.yml
+    - producer-consumer.yml
