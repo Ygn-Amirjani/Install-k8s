@@ -1,4 +1,9 @@
 ---
+kafka_manifest: 
+  - "zookeeper-manifest.yml"
+  - "kafka-manifest.yml"
+  - "producer-consumer.yml"
+
 # ports
 kafka_port: 9092
 zookeeper_client_port: 2181

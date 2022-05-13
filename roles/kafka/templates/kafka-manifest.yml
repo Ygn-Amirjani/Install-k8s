@@ -7,19 +7,19 @@ metadata:
 spec:
   ports:
   - name: kafka-port
-    port: "{{ kafka_port }}"
-    protocol: "{{ protocol }}"
+    port: {{ kafka_port }}
+    protocol: {{ protocol }}
   selector:
     app: kafka
     id: "0"
-  type: "{{ kafka_type }}"
+  type: {{ kafka_type }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kafka-broker0
 spec:
-  replicas: "{{ replica }}"
+  replicas: {{ replica }}
   selector:
     matchLabels:
       app: kafka
@@ -30,11 +30,16 @@ spec:
         app: kafka
         id: "0"
     spec:
+      volumes:
+      - name: kafka-storage
+        hostPath:
+          path: /root/kafka
+          type: DirectoryOrCreate
       containers:
       - name: kafka
-        image: 94.101.187.195:5000/wurstmeister/kafka
+        image: dockerhub.ir/wurstmeister/kafka
         ports:
-        - containerPort: "{{ kafka_port }}"
+        - containerPort: {{ kafka_port }}
         env:
         - name: KAFKA_ZOOKEEPER_CONNECT
           value: zookeeper-service:{{ zookeeper_client_port }}
@@ -42,3 +47,6 @@ spec:
           value: kafka-service.default.svc.cluster.local
         - name: KAFKA_CREATE_TOPICS
           value: input:1:1, output:1:1
+        volumeMounts:
+        - name: kafka-storage
+          mountPath: /kafka
