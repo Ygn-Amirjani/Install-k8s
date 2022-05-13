@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: zookeeper-service
+  namespace: apache-kafka
   labels:
     app: zookeeper-1
 spec:
@@ -22,6 +23,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: zookeeper-deploy
+  namespace: apache-kafka
 spec:
   replicas: {{ replica }}
   selector:
