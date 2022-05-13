@@ -1,0 +1,30 @@
+---
+- name: Nginx Install Required Packages
+  apt:
+    name:
+      - nginx
+    state: latest
+    update_cache: yes
+
+- name: Remove Default Config Files
+  file:
+    path: "/etc/nginx/sites-enabled/default"
+    state: absent
+  notify: reload nginx
+
+- name: Copy Nginx Config Files
+  template:
+    src: "{{ item }}"
+    dest: /etc/nginx/sites-enabled/{{ item }}
+    owner: root
+    group: root
+    mode: 0755
+  loop: "{{ nginx_conf_files }}"
+  notify: reload nginx
+
+- name: Copy Static Files
+  copy:
+    src: static/
+    dest: /var/www/{{ domain_name }}/
+    directory_mode:
+  notify: reload nginx

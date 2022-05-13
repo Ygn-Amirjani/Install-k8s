@@ -1,0 +1,14 @@
+---
+# node port
+node_port_prometheus: 32001
+node_port_grafana: 32002
+
+# links
+domain_name: "bukhara-chkh.ir"
+prometheus_addr: "http://{{ master1_ip }}:{{ node_port_prometheus }}"
+grafana_addr: "http://{{ master1_ip }}:{{ node_port_grafana }}"
+
+# config files
+nginx_conf_files:
+  - "monitor.conf"
+  - "default.conf"
