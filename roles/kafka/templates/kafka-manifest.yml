@@ -33,10 +33,9 @@ spec:
         id: "0"
     spec:
       volumes:
-      - name: kafka-storage
-        hostPath:
-          path: /root/kafka
-          type: DirectoryOrCreate
+      - name: kafka-volume
+        persistentVolumeClaim:
+          claimName: kafka-pvc
       containers:
       - name: kafka
         image: dockerhub.ir/wurstmeister/kafka
@@ -50,5 +49,5 @@ spec:
         - name: KAFKA_CREATE_TOPICS
           value: input:1:1, output:1:1
         volumeMounts:
-        - name: kafka-storage
+        - name: kafka-volume
           mountPath: /kafka
