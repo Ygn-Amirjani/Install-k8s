@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: prometheus-service
   namespace: monitoring
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port:   '9090'
   labels:
     name: prometheus
 spec:
@@ -32,8 +35,9 @@ spec:
     spec:
       volumes:
       - name: prometheus-config-volume
-        persistentVolumeClaim:
-          claimName: prometheus-pvc
+        configMap:
+          defaultMode: 420
+          name: prometheus-server-conf
       - name: prometheus-storage-volume
         persistentVolumeClaim:
           claimName: prometheus-pvc
