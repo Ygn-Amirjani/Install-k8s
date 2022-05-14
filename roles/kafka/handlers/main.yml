@@ -1,4 +1,7 @@
 ---
+- name: create namespace apache-kafka
+  shell: kubectl create namespace apache-kafka
+
 - name: apply kubernetes manifests
   shell: kubectl apply -f /root/apache-kafka/{{ item }}
   loop: "{{ kafka_manifest }}"
