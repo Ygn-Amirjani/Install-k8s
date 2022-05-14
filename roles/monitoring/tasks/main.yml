@@ -1,2 +1,18 @@
 ---
-# tasks file for monitoring
+- name: create directory for monitoring mnifests
+  file:
+    path: /root/monitoring
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: copy manifests into monitoring directory
+  template:
+    src: "{{ item }}"
+    dest: "/root/monitoring/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ monitor_manifest }}"
+  notify: apply kubernetes manifests

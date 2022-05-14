@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-service
+  namespace: monitoring
+  labels:
+    name: grafana
+spec:
+  ports:
+  - protocol: {{ protocol }}
+    port: {{ grafana_port }}
+    targetPort: {{ grafana_port }}
+    nodePort: {{ grafana_node_port }}
+  selector:
+    app: grafana
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-broker0
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: dockerhub.ir/grafana/grafana
+        ports:
+        - containerPort: {{ grafana_port }}

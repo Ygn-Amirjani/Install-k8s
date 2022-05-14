@@ -1,2 +1,14 @@
 ---
-# vars file for monitoring
+monitor_manifest: 
+  - "prometheus-manifest.yml"
+  - "grafana-manifest.yml"
+
+prometheus_port: 9090
+prometheus_node_port: 32001
+
+grafana_port: 3000
+grafana_node_port: 32002
+
+type: NodePort
+protocol: TCP
+replica: 1
