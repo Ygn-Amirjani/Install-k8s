@@ -1,4 +1,7 @@
 ---
+- name: create namespace monitoring
+  shell: kubectl create namespace monitoring
+
 - name: apply kubernetes manifests
   shell: kubectl apply -f /root/monitoring/{{ item }}
   loop: "{{ monitor_manifest }}"

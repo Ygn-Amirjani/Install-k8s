@@ -15,4 +15,6 @@
     group: root
     mode: 0644
   loop: "{{ monitor_manifest }}"
-  notify: apply kubernetes manifests
+  notify: 
+    - kubectl create namespace monitoring
+    - apply kubernetes manifests
