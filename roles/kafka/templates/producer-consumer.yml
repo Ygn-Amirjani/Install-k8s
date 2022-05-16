@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: consumber
-        image: dockerhub.ir/yeganeamirjani/kafka-consumer:latest
+        image: dockerhub.ir/yeganeamirjani/kafka-consumer:end
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,4 +34,4 @@ spec:
     spec:
       containers:
       - name: producer
-        image: dockerhub.ir/yeganeamirjani/kafka-producer:latest
+        image: dockerhub.ir/yeganeamirjani/kafka-producer:end
