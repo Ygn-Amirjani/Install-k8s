@@ -62,7 +62,7 @@ I used the nginx web server to make sure the project was completed faster and ea
 
     *Flannel vs Calico*
 
-Because
+Because :
 1) uses BGP `Border Gateway Protocol` and Bird `BIRD Internet Routing Daemon`, a daemon called Felix configures routes on Bird
 2) It costs less on the cloud than on the Flannel.
 3) supports Network Policies
@@ -73,7 +73,7 @@ Because
 
 Here I have used `hostpath` to protect my data
 
-Because
+Because :
 1) Time was a priority for me and working with `storage clases` was time consuming
 2) In contrast, the `emptyDir` , which disappears when a pod is finished, was a better option
 3) The data remains until node changes
@@ -81,4 +81,15 @@ Because
 I belive engineering is all about these trade-offs and the decision that we take...
 
 ### **Diagrams**
-This is the relation that I found between the given data:
+This is the relation that I found between the given data :
+![Project outline](assets/photo5769326906569767264.jpg)
+
+### **Run In Development Environment
+
+At the very beginning you need to install `ansible`
+
+Note that :
+1) Be sure to replace your server's IPs
+2) Enter your gate password in the `inventory/group_vars/all.yml` file
+3) Change the username and password of Grafana in the `roles/monitoring/vars/main.yml` file
+4) So just run the following command
