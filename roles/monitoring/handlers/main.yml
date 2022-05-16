@@ -1,8 +1,8 @@
 ---
-- name: apply configMap-dashboards.yml
-  shell: kubectl apply -f /root/monitoring/configMap-dashboards.yml
-
 - name: apply kubernetes manifests
   shell: kubectl apply -f /root/monitoring/{{ item }}
   loop: "{{ monitor_manifest }}"
+
+- name: apply configMap-dashboards.yml
+  shell: kubectl apply -f /root/monitoring/configMap-dashboards.yml
 

@@ -7,15 +7,6 @@
     group: root
     mode: 0755
 
-- name: copy configMap-dashboards.yml into monitoring file
-  copy:
-    src: configMap-dashboards.yml
-    dest: /root/monitoring/configMap-dashboards.yml
-    owner: root
-    group: root
-    mode: 0644
-  notify: apply configMap-dashboards.yml
-
 - name: copy manifests into monitoring directory
   template:
     src: "{{ item }}"
@@ -24,6 +15,13 @@
     group: root
     mode: 0644
   loop: "{{ monitor_manifest }}"
-  notify: 
-    - apply kubernetes manifests
-    - create dashboards in grafana
+  notify: apply kubernetes manifests
+
+- name: copy configMap-dashboards.yml into monitoring file
+  copy:
+    src: configMap-dashboards.yml
+    dest: /root/monitoring/configMap-dashboards.yml
+    owner: root
+    group: root
+    mode: 0644
+  notify: apply configMap-dashboards.yml
