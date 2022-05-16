@@ -13,9 +13,9 @@ data:
       type: prometheus
       access: proxy
       orgId: 1
-      url: "https://yegane-prometheus.bukhara-chkh.ir/"
-      user: admin
+      url: "{{ prometheus_url }}"
+      user: "{{ grafana_username }}"
       secureJsonData:
-        password: admin
+        password: "{{ grafana_password }}"
       isDefault: true
     

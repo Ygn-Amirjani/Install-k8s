@@ -6,14 +6,23 @@ monitor_manifest:
   - "clusterRole.yaml"
   - "configMap-prometheus.yaml"
   - "configMap-datasource.yml"
-  - "configMap-dashboards.yml"
   - "prometheus-manifest.yml"
   - "grafana-manifest.yml"
   - "node-exporter-manifest.yml"
   - "kube-state-metrics.yml"
 
+grafana_username: admin
+grafana_password: !vault |
+  $ANSIBLE_VAULT;1.1;AES256
+  63393431353233353636303031363862343366386237336139623564333138313865333936626634
+  3630636636653061333732646662396562306162363231370a383039643161633734383437623634
+  62333132336263663536343766383137666534336539336463346161306264313431396132633966
+  3632326537353165360a646236616466623031373035666464326536613438666162626436393936
+  6433
+
 prometheus_port: 9090
 prometheus_node_port: 32001
+prometheus_url: https://yegane-prometheus.bukhara-chkh.ir/
 
 grafana_port: 3000
 grafana_node_port: 32002
