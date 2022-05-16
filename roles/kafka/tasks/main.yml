@@ -16,5 +16,4 @@
     mode: 0644
   loop: "{{ kafka_manifest }}"
   notify: 
-    - create namespace apache-kafka
     - apply kubernetes manifests

@@ -1,8 +1,12 @@
 ---
 kafka_manifest: 
+  - "create-namespace.yml"
+  - "apache-kafka-pv.yml"
+  - "apache-kafka-pvc.yml"
   - "zookeeper-manifest.yml"
   - "kafka-manifest.yml"
   - "producer-consumer.yml"
+  - "kafka-exporter.yml"
 
 # ports
 kafka_port: 9092
