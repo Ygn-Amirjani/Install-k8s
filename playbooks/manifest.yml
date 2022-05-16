@@ -1,8 +1,7 @@
 ---
 - name: Run the role of gateway so that my local servers can access the Internet
-  hosts: gateway
+  hosts: master1
   become: True
   roles:
-    - dns
-    - gateway
-    - webserver
+    - kafka
+    - monitoring
