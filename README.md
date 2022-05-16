@@ -82,7 +82,8 @@ I belive engineering is all about these trade-offs and the decision that we take
 
 ### **Diagrams**
 This is the relation that I found between the given data :
-![Project outline](assets/photo5769326906569767264.jpg)
+
+![System Design](assets/photo5769326906569767264.jpg "System Design")
 
 ### **Run In Development Environment
 
