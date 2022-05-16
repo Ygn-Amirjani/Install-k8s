@@ -16,5 +16,5 @@
     mode: 0644
   loop: "{{ monitor_manifest }}"
   notify: 
-    - kubectl create namespace monitoring
     - apply kubernetes manifests
+    - create dashboards in grafana

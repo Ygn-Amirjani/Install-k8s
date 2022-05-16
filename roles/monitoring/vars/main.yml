@@ -1,7 +1,15 @@
 ---
 monitor_manifest: 
+  - "create-namespace.yml"
+  - "monitor-pv.yml"
+  - "monitor-pvc.yml"
+  - "clusterRole.yaml"
+  - "configMap-prometheus.yaml"
+  - "configMap-datasource.yml"
   - "prometheus-manifest.yml"
   - "grafana-manifest.yml"
+  - "node-exporter-manifest.yml"
+  - "kube-state-metrics.yml"
 
 prometheus_port: 9090
 prometheus_node_port: 32001

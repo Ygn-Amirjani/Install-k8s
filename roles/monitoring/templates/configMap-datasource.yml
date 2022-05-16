@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: granafa-server-conf
+  labels:
+    name: granafa-server-conf
+  namespace: monitoring
+data:
+  datasource.yml: |-
+    apiVersion: 1
+    datasources:
+    - name: prometheusdata
+      type: prometheus
+      access: proxy
+      orgId: 1
+      url: "https://yegane-prometheus.bukhara-chkh.ir/"
+      user: admin
+      secureJsonData:
+        password: admin
+      isDefault: true
+    

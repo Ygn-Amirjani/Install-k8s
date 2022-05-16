@@ -1,7 +1,17 @@
 ---
-- name: create namespace monitoring
-  shell: kubectl create namespace monitoring
-
 - name: apply kubernetes manifests
   shell: kubectl apply -f /root/monitoring/{{ item }}
   loop: "{{ monitor_manifest }}"
+
+- name: create dashboards in grafana
+  community.grafana.grafana_dashboard:
+    grafana_url: "https://yegane-grafana.bukhara-chkh.ir/"
+    grafana_user: admin
+    grafana_password: admin
+    org_id: "1"
+    dashboard_id: "{{ item }}"
+  loop:
+    - "1860"
+    - "315"
+    - "8171"
+    - "10123"

@@ -21,7 +21,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-broker0
+  name: prometheus
   namespace: monitoring
 spec:
   replicas: {{ replica }}
@@ -34,13 +34,13 @@ spec:
         app: prometheus
     spec:
       volumes:
-      - name: prometheus-config-volume
+      - name: prometheus-config
         configMap:
           defaultMode: 420
           name: prometheus-server-conf
-      - name: prometheus-storage-volume
+      - name: prometheus-storage
         persistentVolumeClaim:
-          claimName: prometheus-pvc
+          claimName: prometheus-storage-pvc
       containers:
       - name: prometheus
         image: dockerhub.ir/prom/prometheus
@@ -53,7 +53,7 @@ spec:
           allowPrivilegeEscalation: false
           runAsUser: 0
         volumeMounts:
-        - name: prometheus-config-volume
+        - name: prometheus-config
           mountPath: /etc/prometheus
-        - name: prometheus-storage-volume
+        - name: prometheus-storage
           mountPath: /prometheus/

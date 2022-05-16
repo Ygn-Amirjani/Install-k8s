@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: grafana-service
   namespace: monitoring
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port:   '3000'
   labels:
     name: grafana
 spec:
@@ -18,7 +21,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grafana-broker0
+  name: grafana
   namespace: monitoring
 spec:
   replicas: 1
@@ -30,8 +33,24 @@ spec:
       labels:
         app: grafana
     spec:
+      volumes:
+      - name: grafana-config-datasource
+        configMap:
+          defaultMode: 420
+          name: granafa-server-conf
+      - name: grafana-storage
+        persistentVolumeClaim:
+          claimName: grafana-storage-pvc
       containers:
       - name: grafana
         image: dockerhub.ir/grafana/grafana
         ports:
         - containerPort: {{ grafana_port }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+        volumeMounts:
+        - name: grafana-config-datasource
+          mountPath: /etc/grafana/provisioning/datasources/
+        - name: grafana-storage
+          mountPath: /var/lib/grafana
