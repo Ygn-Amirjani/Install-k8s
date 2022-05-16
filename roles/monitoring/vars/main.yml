@@ -6,6 +6,7 @@ monitor_manifest:
   - "clusterRole.yaml"
   - "configMap-prometheus.yaml"
   - "configMap-datasource.yml"
+  - "configMap-dashboards.yml"
   - "prometheus-manifest.yml"
   - "grafana-manifest.yml"
   - "node-exporter-manifest.yml"

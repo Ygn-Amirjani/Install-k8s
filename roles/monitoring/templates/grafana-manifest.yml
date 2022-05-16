@@ -38,6 +38,10 @@ spec:
         configMap:
           defaultMode: 420
           name: granafa-server-conf
+      - name: grafana-config-dashboard
+        configMap:
+          defaultMode: 420
+          name: granafa-dashboard-conf
       - name: grafana-storage
         persistentVolumeClaim:
           claimName: grafana-storage-pvc
@@ -52,5 +56,7 @@ spec:
         volumeMounts:
         - name: grafana-config-datasource
           mountPath: /etc/grafana/provisioning/datasources/
+        - name: grafana-config-dashboard
+          mountPath: /etc/grafana/provisioning/dashboards/
         - name: grafana-storage
           mountPath: /var/lib/grafana
