@@ -89,8 +89,36 @@ This is the relation that I found between the given data :
 
 At the very beginning you need to install `ansible`
 
+```
+sudo apt install -y ansible
+```
+
 Note that :
 1) Be sure to replace your server's IPs
 2) Enter your gate password in the `inventory/group_vars/all.yml` file
 3) Change the username and password of Grafana in the `roles/monitoring/vars/main.yml` file
 4) So just run the following command
+
+Now run this command on your host. If you are not using vault, delete the second part of the command
+
+```
+ansible-playbook start-project.yml --ask-vault-pass
+```
+
+There is nothing left. you can :)
+Execute the following command inside the gateway
+
+```
+ansible-playbook sites.yml --ask-vault-pass
+```
+
+Follow the instructions below to make sure your Kuber is healthy
+
+```
+kubectl get nodes
+kubectl get pods -A
+kubectl get pv
+```
+
+And finally it was over .
+
